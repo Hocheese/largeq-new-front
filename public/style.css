@@ -1,0 +1,102 @@
+@font-face {  
+  font-family: 'yao'; 
+  src: url('/font/yao.ttf'); 
+}
+*{
+  box-sizing: border-box;
+  color: #FFF;
+}
+a{
+  text-decoration: none;
+}
+body,html {
+    margin: 0;
+    background-color: #fa572f;
+}
+header{
+    height: 480px;
+}
+header>.center{
+  height: 480px;
+    overflow: hidden;
+  background-image: url("/images/header.png");
+  background-size: 100%;
+  background-position-y: -200px;
+  background-repeat: no-repeat;
+
+  
+    justify-content: center;
+    align-items: flex-end;
+}
+#watchword{
+    font-family: mzd;
+    font-size: 72px;
+    text-align: center;
+}
+.center {
+  margin: auto;
+  width: 1200px;
+  display: flex;
+  
+}
+.div_block{
+  margin-bottom: 5%;
+  background-color: #f19149;
+}
+footer{
+  background-color: #e40001;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+}
+footer .end{
+  flex-direction: column;
+}
+footer .left{
+  padding: 15px;
+  margin: 15px;
+  text-align: center;
+  width: 40%;
+}
+footer .right{
+  display: flex;
+  width: 60%;
+}
+footer .right div{
+  width: 50%;
+}
+footer .center{
+  display: flex;
+}
+
+@media screen and (max-width: 1200px) {
+  .center{
+    width: 100%;
+  }
+}
+@media screen and (max-width: 880px) {
+  
+  header,header>.center {
+    height: auto;
+  }
+  .center{
+    width: 100%;
+  }
+}
+@media screen and (max-width: 740px) {
+  header,header>.center {
+    background-position-y: 0;
+  }
+  #watchword{
+    width: 100%;
+  }
+}
+@media screen and (max-width: 480px){
+  footer .center{
+    flex-direction: column;
+  }
+  footer .left,footer .right{
+    width: 100%;
+    margin: 15px 0;
+  }
+}
