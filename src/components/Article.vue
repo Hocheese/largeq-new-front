@@ -12,28 +12,37 @@
 </template>
 
 <script>
+import ajax from '../lib/ajax.js'
+
 export default {
     props:["id"],
     data(){
         return {
             article:{
-                title:"关于小青青的秘密基地发生故障的情况说明",
-                text:`"由于前端与服务器的通讯发生故障，导致网页无法显示内容。
-                现有关部门正在组织人员进行全力抢修。
-                相关部门领导火速赶往现场，指导抢修工作。
-                上级就此事件做出重要指示：要全力排查故障，及时抢修，将故障的损失降至最低。"`
+                title:"正在加载...",
+                text:"正在加载..."
             }
         }
     },
     mounted(){
-        let xhr = new XMLHttpRequest();
-        xhr.open("GET", "/Article/"+this.$route.params.id);
-        xhr.onload = function () {
-            this.article = JSON.parse(xhr.responseText);
-            this.article
-        }.bind(this);
-        xhr.send();
-    }
+            //
+            ajax("/Article/"+this.$route.params.id,function (data) {
+                try{
+                    this.article = JSON.parse(data);
+                }catch(e){
+                    this.article.title="关于小青青的秘密基地发生故障的情况说明";
+                    this.article.text=`由于前端与服务器的通讯发生故障，导致网页无法显示内容。
+                    基地立即启动了应急预案，组织人员进行全力抢修，同时成立了调查组。
+                    相关部门领导火速赶往现场，指导抢修工作。
+                    上级就此事件做出重要指示：要彻查故障原因，并全力抢修，将故障的损失降至最低；要举一反三，避免此类故障再次发生。
+                    经初步调查，故障原因是由于系统抛出以下异常所导致的：`+e.message
+                    throw new Error("JSON解析失败："+e.message)
+                }
+                
+            }.bind(this))
+        
+        
+    },
 }
 </script>
 

@@ -34,19 +34,7 @@ var app=new Vue({
     articlesList:null,
     friends:null
   },*/
-  methods:{
-    load(url,fx){
-      let xhr = new XMLHttpRequest();
-      xhr.open("GET", url);
-      xhr.onload = function () {
-        let data = JSON.parse(xhr.responseText);
-        fx(data);
-        window.console.log(this);
-      }.bind(this);
-      xhr.send();
-      
-    }
-  },
+ 
   created(){
     //this.load("http://weather.tools.largeq.cn/weather.php",function(){this.weather});
     //this.load("/List/0", function () { this.articlesList });

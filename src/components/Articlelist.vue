@@ -31,6 +31,7 @@
 
 <script>
 import articlelink from './Articlelink.vue'
+import ajax from '../lib/ajax.js'
 
 export default {
   name: 'articlelist',
@@ -47,23 +48,17 @@ export default {
     
   },
   created(){
-    this.load();
-  },
-  methods: {
-    load(){
-      let xhr = new XMLHttpRequest();
-      xhr.open("GET", "/List/"+this.p);
-      xhr.onload = function () {
-        if(this.p==0){
-          this.articlesList = JSON.parse(xhr.responseText);
+    this.load("/List/"+this.p,function(data){
+      if(this.p==0){
+          this.articlesList = JSON.parse(data);
         }else{
-          this.articlesList = this.articlesList.concat(JSON.parse(xhr.responseText));
+          this.articlesList = this.articlesList.concat(JSON.parse(data));
         }
         this.p++;
-      }.bind(this);
-      xhr.send();
-      
-    }
+    }.bind(this));
+  },
+  methods: {
+    load:ajax,
   },
 }
 </script>

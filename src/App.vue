@@ -41,7 +41,6 @@ export default {
         friends:[
           {"id":"1","name":"\u6613\u6d4b","url":"etest.xyz"},
           {"id":"2","name":" LargeQ\u7684\u77e5\u4e4e\u4e3b\u9875","url":"www.zhihu.com\/people\/LargeQ"},
-          {"id":"3","name":"\u660c\u7ef4\u7684\u535a\u5ba2","url":"blog.changwei.me\/"},
           null
         ],
 
@@ -67,21 +66,14 @@ export default {
       return obj;
 
     },
-    load:ajax
   },
   mounted(){
     ajax("http://weather.tools.largeq.cn/weather.php",function(data){
       this.weather=JSON.parse(data)
     }.bind(this))
-    /*let xhr = new XMLHttpRequest();
-      xhr.open("GET", "http://weather.tools.largeq.cn/weather.php");
-      xhr.onload = function () {
-        this.weather = JSON.parse(xhr.responseText);
-        //window.console.log(this);
-      }.bind(this);
-      xhr.send();*/
-    //this.load("http://weather.tools.largeq.cn/weather.php",function(){this.weather});
-    //this.weather = [{ "id": "0", "name": "宝山", "state1": "1", "state2": "0", "weather": "错误", "tem1": "18", "tem2": "8", "temNow": "14", "windState": "错误", "windDir": "错误", "windPower": "错误", "humidity": "63%", "time": "09:00", "timeline": "1555035435" }]
+    ajax("/friends",function(data){
+      this.friends=JSON.parse(data)
+    }.bind(this))
   }
 }
 </script>
